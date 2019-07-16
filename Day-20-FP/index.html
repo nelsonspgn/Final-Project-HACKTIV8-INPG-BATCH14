@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Chakra+Petch:400,700|Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Bahianita&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        background-image: url(https://i.pinimg.com/originals/87/06/89/8706891a6f0fd9d92f9964f6123fede3.jpg);
+      }
+
+      /* #c1 {
+        border: 2px;
+        border-style: solid;
+        border-color: rgb(228, 147, 147);
+      } */
+
+      .choices {
+        text-align: center;
+        display: inline-block;
+      }
+
+      .choice {
+        width: 150px;
+        height: 150px;
+        border-color: rgb(226, 225, 225) !important;
+        border: 3px;
+        border-style: solid;
+        border-radius: 100%;
+        transition: 0.3s;
+        display: inline-block;
+        padding-top: 20px;
+        margin: 10px;
+      }
+
+      .buttonSty1:hover {
+        cursor: pointer;
+        background-color: slategray;
+      }
+
+      .buttonSty2:hover {
+        cursor: pointer;
+        background-color: darkmagenta;
+      }
+
+      .buttonSty3:hover {
+        cursor: pointer;
+        background-color: darkolivegreen;
+      }
+
+      .score {
+        background-color: red;
+        width: 400px;
+        height: 100px;
+        border: 3px;
+        border-style: solid;
+        border-color: white;
+        margin-top: 10px;
+      }
+
+      .pscore {
+        color: white;
+        font-size: 40px;
+        padding: 15px;
+        font-family: "Chakra Petch", sans-serif;
+        text-align: center;
+      }
+
+      .pweapon {
+        color: white;
+        font-size: 60px;
+        font-family: "Bahianita", cursive;
+        text-align: center;
+      }
+
+      .pbestof5 {
+        color: white;
+        font-size: 50px;
+        font-weight: 200;
+        text-align: center;
+        font-family: "Bahianita", cursive;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm" id="c1"></div>
+
+        <div class="col-sm" id="c1" id="c1">
+          <p class="pbestof5">Best Of 5 Rule</p>
+
+          <div class="score"><p class="pscore">0:0</p></div>
+
+          <p class="pweapon">choose Your Weapon</p>
+
+          <div class="choices">
+            <div class="choice buttonSty1" id="rock">
+              <img src="rock.png" alt="" width="100px" height="100px" />
+            </div>
+
+            <div class="choice buttonSty2" id="paper">
+              <img src="paper.png" alt="" width="100px" height="100px" />
+            </div>
+
+            <div class="choice buttonSty3" id="scissors">
+              <img src="scissors.png" alt="" width="100px" height="100px" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm" id="c1"></div>
+      </div>
+    </div>
+
+    <script>
+      var pilihanUser = "";
+
+      document.getElementById("rock").addEventListener("click", function() {
+        pilihanUser = "Rock";
+        game();
+        // console.log(pilihanUser);
+      });
+
+      document.getElementById("paper").addEventListener("click", function() {
+        pilihanUser = "Paper";
+        game();
+        // console.log(pilihanUser);
+      });
+
+      document.getElementById("scissors").addEventListener("click", function() {
+        pilihanUser = "Scissors";
+        game();
+        // console.log(pilihanUser);
+      });
+
+      function getPilihanComp() {
+        var piliharr = ["Rock", "Paper", "Scissors"];
+        var suit = Math.floor(Math.random() * 3);
+        return piliharr[suit];
+      }
+
+      function game() {
+        var pilihanComp = getPilihanComp();
+
+        if (pilihanUser == "Rock" && pilihanComp == "Paper") {
+          console.log(
+            "user: " + pilihanUser + " comp: " + pilihanComp + " User Lose"
+          );
+        } else if (pilihanUser == "Rock" && pilihanComp == "Scissors") {
+          console.log(
+            "user: " + pilihanUser + " comp: " + pilihanComp + " User Win"
+          );
+        } else if (pilihanUser == "Paper" && pilihanComp == "Rock") {
+          console.log(
+            "user: " + pilihanUser + " comp: " + pilihanComp + " User Win"
+          );
+        } else if (pilihanUser == "Paper" && pilihanComp == "Scissors") {
+          console.log(
+            "user: " + pilihanUser + " comp: " + pilihanComp + " User Lose"
+          );
+        } else if (pilihanUser == "Scissors" && pilihanComp == "Rock") {
+          console.log(
+            "user: " + pilihanUser + " comp: " + pilihanComp + " User Lose"
+          );
+        } else if (pilihanUser == "Scissors" && pilihanComp == "Paper") {
+          console.log(
+            "user: " + pilihanUser + " comp: " + pilihanComp + " User Win"
+          );
+        } else {
+          console.log("DRAW");
+        }
+      }
+
+      // var pilihanUser = prompt("Masukkan pilihan anda: Gajah / Semut / Orang")
+
+      // if (pilihanUser == "gajah" || pilihanUser == "semut" || pilihanUser == "orang") {
+
+      //     var suit = Math.floor(Math.random() * 3)
+      //     var pilihanComp
+      //     //0 = gajah
+      //     //1 = semut
+      //     //2 = orang
+
+      //     if (suit < 1) {
+      //         pilihanComp = "gajah"
+      //     } else if (suit < 2) {
+      //         pilihanComp = "semut"
+      //     } else {
+      //         pilihanComp = "orang"
+      //     }
+
+      //     console.log(pilihanComp)
+
+      // if (pilihanUser == "gajah" && pilihanComp == "semut") {
+      //     alert("anda kalah")
+      // } else if (pilihanUser == "gajah" && pilihanComp == "orang") {
+      //     alert("anda menang")
+      // } else if (pilihanUser == "semut" && pilihanComp == "gajah") {
+      //     alert("anda menang")
+      // } else if (pilihanUser == "semut" && pilihanComp == "orang") {
+      //     alert("anda kalah")
+      // } else if (pilihanUser == "orang" && pilihanComp == "gajah") {
+      //     alert("anda kalah")
+      // } else if (pilihanUser == "orang" && pilihanComp == "semut") {
+      //     alert("anda menang")
+      // } else {
+      //     alert("Seri")
+      // }
+      // } else {
+      //     alert("pilihan anda salah")
+      // }
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
