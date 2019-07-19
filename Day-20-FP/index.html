@@ -99,9 +99,16 @@
       right: 100px;
     }
 
-    .pweapon {
+    #pweapon {
       color: white;
       font-size: 60px;
+      font-family: "Bahianita", cursive;
+      text-align: center;
+    }
+
+    #word {
+      color: white;
+      font-size: 30px;
       font-family: "Bahianita", cursive;
       text-align: center;
     }
@@ -117,20 +124,28 @@
 </head>
 
 <body>
+    <audio src="wanna be free.mp3" autoplay></audio>
+
   <div class="container">
     <div class="row">
       <div class="col-sm" id="c1"></div>
 
       <div class="col-sm" id="c1" id="c1">
-        <p class="pbestof5">Best Of 5 Rule</p>
+        <p class="pbestof5">Fight For Your Glory</p>
 
         <div class="score">
           <span id="userScore">0</span>
           <span id="titik">:</span>
           <span id="compScore">0</span>
         </div>
+        
+      <div id="pweapon">
+        <p id="pweapon">choose Your Weapon</p>
+      </div>
 
-        <p class="pweapon">choose Your Weapon</p>
+      <div id="word ">
+        <p id="word"></p>
+      </div>
 
         <div class="choices">
           <div class="choice buttonSty1" id="rock">
@@ -152,35 +167,38 @@
   </div>
 
   <script>
+    //VAR KOSONG UNTUK NANTI DIISI DENGAN APA YANG DIKLIK USER
     var pilihanUser = "";
 
+
+    //UNTUK EVENT YANG TERJADI SAAT DIKLIK
     document.getElementById("rock").addEventListener("click", function () {
       pilihanUser = "Rock";
       game();
-
-      // console.log(pilihanUser);
     });
 
     document.getElementById("paper").addEventListener("click", function () {
       pilihanUser = "Paper";
       game();
-      // console.log(pilihanUser);
     });
 
     document.getElementById("scissors").addEventListener("click", function () {
       pilihanUser = "Scissors";
       game();
-      // console.log(pilihanUser);
     });
 
+    //UNTUK MENDAPATKAN PILIHAN COMP
     function getPilihanComp() {
       var piliharr = ["Rock", "Paper", "Scissors"];
       var suit = Math.floor(Math.random() * 3);
       return piliharr[suit];
     }
+
+    //VAR GLOBAL UNTUK SCORE
     var userScore = 0;
     var compScore = 0;
 
+    //FUNGSI SAAT USER MENANG
     function wining() {
       userScore++;
       console.log("win");
@@ -188,66 +206,55 @@
       document.getElementById("userScore").innerHTML = userScore;
     }
 
+    //FUNGSI SAAT COMP MENANG
     function lose() {
       compScore++;
-      document.getElementById("compScore").innerHTML = compScore;
+      console.log("lose");
+      console.log(compScore);
+      document.getElementById("compScore").innerHTML = compScore; 
     }
 
+
+//FUNGSI SAAT GAME BERJALAN
     function game() {
       var pilihanComp = getPilihanComp();
-      var player;
       if (pilihanUser == "Rock" && pilihanComp == "Paper") {
-        player = " Lose";
-        console.log(
-          "user: " +
-          pilihanUser +
-          " - comp: " +
-          pilihanComp +
-          " - User" +
-          player
-        );
+        document.getElementById("pweapon").style.fontSize ="30px";
+        document.getElementById("pweapon").innerHTML = "You Lose You chose: " + pilihanUser
+        document.getElementById("word").innerHTML = "Comp chose: " + pilihanComp
         lose();
-      } else if (pilihanUser == "Rock" && pilihanComp == "Scissors") {
-        var player = " Win";
-        console.log(
-          "user: " +
-          pilihanUser +
-          " - comp: " +
-          pilihanComp +
-          " - User" +
-          player
-        );
+      } 
+      else if (pilihanUser == "Rock" && pilihanComp == "Scissors") {
+        document.getElementById("pweapon").style.fontSize ="30px";
+        document.getElementById("pweapon").innerHTML = "You Win You chose: " + pilihanUser
+        document.getElementById("word").innerHTML = "Comp chose: " + pilihanComp
         wining();
-      } else if (pilihanUser == "Paper" && pilihanComp == "Rock") {
-        var player = " Win";
-        console.log(
-          "user: " + pilihanUser + " comp: " + pilihanComp + " User" + player
-        );
+      } 
+      else if (pilihanUser == "Paper" && pilihanComp == "Rock") {
+        document.getElementById("pweapon").style.fontSize ="30px";
+        document.getElementById("pweapon").innerHTML = "You Win You chose: " + pilihanUser
+        document.getElementById("word").innerHTML = "Comp chose: " + pilihanComp
         wining();
-
       } else if (pilihanUser == "Paper" && pilihanComp == "Scissors") {
-        player = " Lose";
-        console.log(
-          "user: " + pilihanUser + " comp: " + pilihanComp + " User" + player
-        );
+        document.getElementById("pweapon").style.fontSize ="30px";
+        document.getElementById("pweapon").innerHTML = "You Lose You chose: " + pilihanUser
+        document.getElementById("word").innerHTML = "Comp chose: " + pilihanComp
         lose();
-      } else if (pilihanUser == "Scissors" && pilihanComp == "Rock") {
-        player = " Lose";
-        console.log(
-          "user: " + pilihanUser + " comp: " + pilihanComp + " User" + player
-        );
+      } 
+      else if (pilihanUser == "Scissors" && pilihanComp == "Rock") {
+        document.getElementById("pweapon").style.fontSize ="30px";
+        document.getElementById("pweapon").innerHTML = "You Lose You chose: " + pilihanUser
+        document.getElementById("word").innerHTML = "Comp chose: " + pilihanComp
         lose();
       } else if (pilihanUser == "Scissors" && pilihanComp == "Paper") {
-        player = " Win";
-        console.log(
-          "user: " + pilihanUser + " comp: " + pilihanComp + " User" + player
-        );
+        document.getElementById("pweapon").style.fontSize ="30px";
+        document.getElementById("pweapon").innerHTML = "You Win You chose: " + pilihanUser
+        document.getElementById("word").innerHTML = "Comp chose: " + pilihanComp
         wining();
       } else {
-        console.log(
-          "user: " + pilihanUser + " comp: " + pilihanComp + " DRAW"
-        );
-        lose();
+        document.getElementById("pweapon").style.fontSize ="30px";
+        document.getElementById("pweapon").innerHTML = "Draw You chose: " + pilihanUser
+        document.getElementById("word").innerHTML = "Comp chose: " + pilihanComp
       }
     }
   </script>
